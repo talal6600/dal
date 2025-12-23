@@ -22,7 +22,7 @@ export interface StockLog {
   date: string;
   type: SimType;
   quantity: number;
-  action: 'add' | 'return_company' | 'to_damaged' | 'recover' | 'flush';
+  action: 'add' | 'return_company' | 'to_damaged' | 'recover' | 'flush' | 'sale';
 }
 
 export interface FuelLog {
@@ -74,9 +74,15 @@ export interface DataContextType extends UserData {
   addUser: (user: Omit<User, 'id'>) => void;
   deleteUser: (id: number) => void;
   
-  addTransaction: (type: TransactionType, amount: number, quantity: number) => void;
+  addTransaction: (
+    type: TransactionType,
+    amount: number,
+    quantity: number,
+    opts?: { autoPrice?: boolean }
+  ) => { ok: boolean; error?: string; chargedAmount?: number };
   removeTransaction: (id: number) => void;
   updateStock: (type: SimType, quantity: number, action: StockLog['action']) => void;
+  getPriceForQuantity: (type: SimType, quantity: number) => number;
   addFuelLog: (log: Omit<FuelLog, 'id'>) => void;
   removeFuelLog: (id: number) => void;
   updateSettings: (newSettings: Partial<Settings>) => void;

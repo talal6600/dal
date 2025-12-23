@@ -25,6 +25,15 @@ export const SIM_COLORS: Record<TransactionType, string> = {
   device: '#8b5cf6', // Violet 500
 };
 
+export const STOCK_ACTION_LABELS: Record<string, string> = {
+  add: 'إضافة',
+  sale: 'بيع',
+  return_company: 'إرجاع للشركة',
+  to_damaged: 'تحويل لتالف',
+  recover: 'استرجاع من التالف',
+  flush: 'إتلاف',
+};
+
 export const FUEL_PRICES = {
   '91': 2.18,
   '95': 2.33,
